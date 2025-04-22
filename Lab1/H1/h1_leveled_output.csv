@@ -1,7 +1,7 @@
-workload,compaction_style,value_size,max_bytes_for_level_base,rocksdb.number.keys.written,rocksdb.bytes.written,rocksdb.compact.write.bytes,rocksdb.flush.write.bytes,rocksdb.wal.bytes,rocksdb.write.wal,fillrandom_latency_us,fillrandom_throughput_ops,fillrandom_throughput_bytes,overwrite_latency_us,overwrite_throughput_ops,overwrite_throughput_bytes
-overwrite,0,1024,4,1000000,1056000000,542321634,554233097,1056000000,1000000,,,,20.251,49349.0,48.9
-fillrandom,0,16384,4,,,,,,,,,,,,
-overwrite,0,4096,4,1000000,4128000000,3402204193,2264464525,4128000000,1000000,,,,63.033,15864.0,62.2
-overwrite,0,16384,4,,,,,,,,,,,,
-fillrandom,0,4096,4,1000000,4128000000,3392791058,2264426135,4128000000,1000000,76.668,13043.0,51.1,,,
-fillrandom,0,1024,4,1000000,1056000000,526336527,554192578,1056000000,1000000,17.585,56838.0,56.4,,,
+workload,compaction_style,value_size,rocksdb.number.keys.written,rocksdb.bytes.written,rocksdb.compact.write.bytes,rocksdb.flush.write.bytes,rocksdb.wal.bytes,rocksdb.write.wal,fillrandom_latency_us,fillrandom_throughput_ops,fillrandom_throughput_bytes,overwrite_latency_us,overwrite_throughput_ops,overwrite_throughput_bytes
+overwrite,0,1024,1000000,1056000000,542321634,554233097,1056000000,1000000,,,,20.251,49349.0,48.9
+fillrandom,0,16384,,,,,,,,,,,,
+overwrite,0,4096,1000000,4128000000,3402204193,2264464525,4128000000,1000000,,,,63.033,15864.0,62.2
+overwrite,0,16384,,,,,,,,,,,,
+fillrandom,0,4096,1000000,4128000000,3392791058,2264426135,4128000000,1000000,76.668,13043.0,51.1,,,
+fillrandom,0,1024,1000000,1056000000,526336527,554192578,1056000000,1000000,17.585,56838.0,56.4,,,

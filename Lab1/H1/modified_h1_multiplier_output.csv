@@ -1,4 +1,4 @@
-workload,compaction_style,value_size,max_bytes_for_level_base,rocksdb.number.keys.written,rocksdb.bytes.written,rocksdb.compact.write.bytes,rocksdb.flush.write.bytes,rocksdb.wal.bytes,rocksdb.write.wal,WAF,latency,throughput_ops,throughput_bytes
+workload,compaction_style,value_size,max_bytes_for_level_multiplier,rocksdb.number.keys.written,rocksdb.bytes.written,rocksdb.compact.write.bytes,rocksdb.flush.write.bytes,rocksdb.wal.bytes,rocksdb.write.wal,WAF,latency,throughput_ops,throughput_bytes
 overwrite,leveled,4KB,20,1000000,4128000000,3876164853,2264551781,4128000000,1000000,2.4875767039728682,77.384,12922.0,50.7
 fillrandom,leveled,1KB,10,1000000,1056000000,532065061,554231834,1056000000,1000000,2.028690241477273,12.622,79224.0,78.6
 fillrandom,leveled,16KB,10,1000000,16417000000,26808615703,8996537425,16417000000,1000000,3.1809802721569107,410.739,2434.0,38.1
