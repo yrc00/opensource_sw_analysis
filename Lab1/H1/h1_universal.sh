@@ -7,10 +7,10 @@ workloads=("fillrandom" "overwrite")
 compaction_style=1
 
 # 데이터 사이즈
-value_sizes=(256 1024 4096 16384)  # 256B, 1KB, 4KB, 16KB
+value_sizes=(1024 4096 16384)  # 1KB, 4KB, 16KB
 
 # DB 엔트리 수
-num=100000
+num=1000000
 
 # db_bench 경로
 DB_BENCH="./db_bench"

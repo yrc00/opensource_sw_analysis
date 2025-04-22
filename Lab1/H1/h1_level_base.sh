@@ -7,10 +7,10 @@ workloads=("fillrandom" "overwrite")
 compaction_style=0
 
 # 데이터 사이즈
-value_sizes=(256 1024 4096 16384)  # 256B, 1KB, 4KB, 16KB
+value_sizes=(1024 4096 16384)  # 1KB, 4KB, 16KB
 
 # DB 엔트리 수
-num=100000
+num=1000000
 
 # Leveld compaction 설정
 max_bytes_for_level_base=(67108864 268435456 536870912)  # 64MB, 256MB, 512MB
@@ -24,7 +24,7 @@ log_dir="exp_logs"
 mkdir -p "$log_dir"
 
 # 실험 루프
-for val_size in "${value_size[@]}"; do
+for val_size in "${value_sizes[@]}"; do
   for workload in "${workloads[@]}"; do
     for level_base in "${max_bytes_for_level_base[@]}"; do
 
