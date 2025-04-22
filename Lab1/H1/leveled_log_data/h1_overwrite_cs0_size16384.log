@@ -1,0 +1,24 @@
+RocksDB:    version 10.2.0
+Date:       Tue Apr 22 23:28:44 2025
+CPU:        1 * 13th Gen Intel(R) Core(TM) i7-1360P
+CPUCache:   18432 KB
+... finished 100 ops                              ... finished 200 ops                              ... finished 300 ops                              ... finished 400 ops                              ... finished 500 ops                              ... finished 600 ops                              ... finished 700 ops                              ... finished 800 ops                              ... finished 900 ops                              put error: IO error: No space left on device: While appending to file: /tmp/rocksdb_h1_overwrite_cs0_size16384/000004.log: No space left on device
+Set seed to 1745332124421613 because --seed was 0
+Initializing RocksDB Options from the specified file
+Initializing RocksDB Options from command-line flags
+Integrated BlobDB: blob cache disabled
+Keys:       16 bytes each (+ 0 bytes user-defined timestamp)
+Values:     16384 bytes each (8192 bytes after compression)
+Entries:    1000000
+Prefix:    0 bytes
+Keys per prefix:    0
+RawSize:    15640.3 MB (estimated)
+FileSize:   7827.8 MB (estimated)
+Write rate: 0 bytes/second
+Read rate: 0 ops/second
+Compression: Snappy
+Compression sampling rate: 0
+Memtablerep: SkipListFactory
+Perf Level: 1
+------------------------------------------------
+DB path: [/tmp/rocksdb_h1_overwrite_cs0_size16384]
