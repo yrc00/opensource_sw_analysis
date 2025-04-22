@@ -1,2 +1,5 @@
 # opensource_sw_analysis
-# opensource_sw_analysis
+
+2025년 1학기 오픈소스분석(빅데이터) 수업의 과제를 위한 레포지토리입니다
+
+실험 로그 데이터 및 분석 코드를 공유합니다. 
