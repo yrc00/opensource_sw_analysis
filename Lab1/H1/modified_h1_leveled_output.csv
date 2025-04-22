@@ -1,7 +1,7 @@
-workload,compaction_style,value_size,rocksdb.number.keys.written,rocksdb.bytes.written,rocksdb.compact.write.bytes,rocksdb.flush.write.bytes,rocksdb.wal.bytes,rocksdb.write.wal,WAF
-overwrite,leveled,1KB,1000000.0,1056000000.0,542321634.0,554233097.0,1056000000.0,1000000.0,2.0384041013257574
-fillrandom,leveled,16KB,,,,,,,
-overwrite,leveled,4KB,1000000.0,4128000000.0,3402204193.0,2264464525.0,4128000000.0,1000000.0,2.3727395150193797
-overwrite,leveled,16KB,,,,,,,
-fillrandom,leveled,4KB,1000000.0,4128000000.0,3392791058.0,2264426135.0,4128000000.0,1000000.0,2.370449901405039
-fillrandom,leveled,1KB,1000000.0,1056000000.0,526336527.0,554192578.0,1056000000.0,1000000.0,2.023228319128788
+workload,compaction_style,value_size,max_bytes_for_level_base,rocksdb.number.keys.written,rocksdb.bytes.written,rocksdb.compact.write.bytes,rocksdb.flush.write.bytes,rocksdb.wal.bytes,rocksdb.write.wal,WAF,latency,throughput_ops,throughput_bytes
+overwrite,leveled,1KB,4,1000000.0,1056000000.0,542321634.0,554233097.0,1056000000.0,1000000.0,2.0384041013257574,20.251,49349.0,48.9
+fillrandom,leveled,16KB,4,,,,,,,,0.0,0.0,0.0
+overwrite,leveled,4KB,4,1000000.0,4128000000.0,3402204193.0,2264464525.0,4128000000.0,1000000.0,2.3727395150193797,63.033,15864.0,62.2
+overwrite,leveled,16KB,4,,,,,,,,0.0,0.0,0.0
+fillrandom,leveled,4KB,4,1000000.0,4128000000.0,3392791058.0,2264426135.0,4128000000.0,1000000.0,2.370449901405039,76.668,13043.0,51.1
+fillrandom,leveled,1KB,4,1000000.0,1056000000.0,526336527.0,554192578.0,1056000000.0,1000000.0,2.023228319128788,17.585,56838.0,56.4
