@@ -1,0 +1,12 @@
+workload,compaction_style,config,rocksdb.number.keys.written,rocksdb.bytes.written,rocksdb.compact.write.bytes,rocksdb.flush.write.bytes,rocksdb.wal.bytes,rocksdb.write.wal,fillrandom_latency_us,fillrandom_throughput_ops,fillrandom_throughput_bytes,overwrite_latency_us,overwrite_throughput_ops,overwrite_throughput_bytes,readwhilewriting_latency_us,readwhilewriting_throughput_ops,readwhilewriting_throughput_bytes,read_latency_us,read_throughput_ops,read_throughput_bytes
+fillrandom,2,perf_4096,500000,2064000000,0,1104517339,0,0,10.955,91279.0,358.0,,,,,,,,,
+overwrite,1,stable_4096,500000,2064000000,874169405,1104783902,2064000000,500000,,,,38.76,25697.0,100.8,,,,,,
+overwrite,2,perf_4096,500000,2064000000,0,1104125169,0,0,,,,12.586,79450.0,311.6,,,,,,
+overwrite,0,stable_4096,500000,2064000000,928642689,1104800027,2064000000,500000,,,,33.234,30046.0,117.8,,,,,,
+fillrandom,1,perf_4096,500000,2064000000,938107994,1104751825,0,0,27.459,36406.0,142.8,,,,,,,,,
+overwrite,0,perf_4096,500000,2064000000,899581983,1104972461,0,0,,,,25.775,38797.0,152.1,,,,,,
+overwrite,1,perf_4096,500000,2064000000,937020799,1104694067,0,0,,,,29.564,33825.0,132.6,,,,,,
+fillrandom,2,stable_4096,500000,2064000000,0,1104514199,2064000000,500000,18.277,54712.0,214.6,,,,,,,,,
+overwrite,2,stable_4096,500000,2064000000,0,1104760479,2064000000,500000,,,,19.996,50010.0,196.1,,,,,,
+fillrandom,0,stable_4096,500000,2064000000,909146688,1104605088,2064000000,500000,32.67,30565.0,119.9,,,,,,,,,
+fillrandom,1,stable_4096,500000,2064000000,948039261,1105095275,2064000000,500000,30.982,32249.0,126.5,,,,,,,,,
