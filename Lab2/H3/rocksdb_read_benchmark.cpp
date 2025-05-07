@@ -1,5 +1,4 @@
-// rocksdb_read_benchmark.cpp
-// 이 코드를 쓰기 전에 먼저 같은 설정으로 데이터를 rocksdb_benchmark.cpp (쓰기용)으로 미리 생성해 두어야 함
+// 읽기 수정
 #include <iostream>
 #include <string>
 #include <vector>
@@ -13,11 +12,6 @@
 #include <cassert>
 #include <chrono>
 
-bool isHotKey(const std::string& key, int hot_start, int hot_end) {
-    int key_int = std::stoi(key);
-    return key_int >= hot_start && key_int <= hot_end;
-}
-
 rocksdb::CompactionStyle parseCompactionStyle(const std::string& style_str) {
     if (style_str == "level") return rocksdb::kCompactionStyleLevel;
     if (style_str == "universal") return rocksdb::kCompactionStyleUniversal;
@@ -26,6 +20,15 @@ rocksdb::CompactionStyle parseCompactionStyle(const std::string& style_str) {
 
     std::cerr << "지원하지 않는 컴팩션 스타일입니다: " << style_str << std::endl;
     exit(1);
+}
+
+int generate_cold_key(std::default_random_engine& rng, int hot_start, int hot_end, int num_keys) {
+    std::uniform_int_distribution<int> dist(0, num_keys - 1);
+    int key;
+    do {
+        key = dist(rng);
+    } while (key >= hot_start && key <= hot_end); // hot 범위 피하기
+    return key;
 }
 
 int main(int argc, char** argv) {
@@ -40,7 +43,7 @@ int main(int argc, char** argv) {
     int num_keys = std::stoi(argv[2]);
     int hot_start = std::stoi(argv[3]);
     int hot_end = std::stoi(argv[4]);
-    int value_size = std::stoi(argv[5]); // 사용은 안 해도 통일성 위해 유지
+    int value_size = std::stoi(argv[5]); // unused
     int hot_ratio = std::stoi(argv[6]);
     std::string default_compaction_str = argv[7];
     std::string hot_compaction_str = argv[8];
@@ -48,9 +51,7 @@ int main(int argc, char** argv) {
     rocksdb::Options options;
     options.create_if_missing = false;
     options.create_missing_column_families = true;
-
-    std::shared_ptr<rocksdb::Statistics> statistics = rocksdb::CreateDBStatistics();
-    options.statistics = statistics;
+    options.statistics = rocksdb::CreateDBStatistics();
 
     rocksdb::ColumnFamilyOptions default_cf_options;
     default_cf_options.compaction_style = parseCompactionStyle(default_compaction_str);
@@ -65,30 +66,36 @@ int main(int argc, char** argv) {
 
     std::vector<rocksdb::ColumnFamilyHandle*> handles;
     rocksdb::DB* db;
-    rocksdb::Status status = rocksdb::DB::Open(options, db_path, cf_descriptors, &handles, &db);
+    auto status = rocksdb::DB::Open(options, db_path, cf_descriptors, &handles, &db);
     assert(status.ok());
 
     std::default_random_engine rng(std::random_device{}());
-    std::uniform_int_distribution<int> key_dist(0, num_keys - 1);
-    std::uniform_int_distribution<int> hot_access_dist(0, 99);
+    std::uniform_int_distribution<int> hot_key_dist(hot_start, hot_end);  // hot 범위 내에서 확률 설정
+    std::uniform_int_distribution<int> hot_access_dist(0, 99);  // 0~99 사이의 정수를 생성해 hot_ratio 비율에 따라 hot/cold 여부를 결정
+    
+	// 실제 조회 성공한 횟수를 저장할 변수들
+    int found_hot = 0, found_default = 0;
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    int found_hot = 0, found_default = 0;
-
     for (int i = 0; i < num_keys; ++i) {
-        int key = key_dist(rng);
-        std::string key_str = std::to_string(key);
+		    // 이 요청이 hot key에 대한 접근인지 여부 결정 (예: hot_ratio가 70이면 70% 확률로 true)
+        bool is_hot_access = (hot_access_dist(rng) < hot_ratio);
+
+        int key = is_hot_access
+                    ? hot_key_dist(rng)  // hot 접근이라면 hot 범위 내에서 무작위 키 선택
+                    : generate_cold_key(rng, hot_start, hot_end, num_keys);  // cold 접근이라면 hot 범위 밖에서 선택
+
+        std::string key_str = std::to_string(key); // 조회 할 키 문자열로 변환하여 저장
         std::string value;
 
-        bool simulate_hot = (hot_access_dist(rng) < hot_ratio);
-        bool target_hot = isHotKey(key_str, hot_start, hot_end) && simulate_hot;
+				// 접근 대상 Column Family 선택 (hot이면 handles[1], cold(default)이면 handles[0])
+        rocksdb::ColumnFamilyHandle* target_handle = is_hot_access ? handles[1] : handles[0];
 
-        rocksdb::ColumnFamilyHandle* handle = target_hot ? handles[1] : handles[0];
-
-        rocksdb::Status s = db->Get(rocksdb::ReadOptions(), handle, key_str, &value);
+				// 키 조회 수행
+        rocksdb::Status s = db->Get(rocksdb::ReadOptions(), target_handle, key_str, &value);
         if (s.ok()) {
-            target_hot ? found_hot++ : found_default++;
+            is_hot_access ? found_hot++ : found_default++;
         }
     }
 
@@ -100,8 +107,7 @@ int main(int argc, char** argv) {
     std::cout << "hot 컬럼에서 찾은 키 수: " << found_hot << std::endl;
     std::cout << "default 컬럼에서 찾은 키 수: " << found_default << std::endl;
 
-    std::string stats = statistics->ToString();
-    std::cout << "RocksDB 통계:\n" << stats << std::endl;
+    std::cout << "RocksDB 통계:\n" << options.statistics->ToString() << std::endl;
 
     for (auto* h : handles) db->DestroyColumnFamilyHandle(h);
     delete db;
