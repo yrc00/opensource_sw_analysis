@@ -1,0 +1,43 @@
+work,hot,cold,trial,total_time(s),compaction_time(us),compaction_ratio,stall_flush_total(us),write_stall_count,compressed_from,compressed_to,flush_bytes,compact_bytes,reason,case
+read,LZ4,Zlib,2,24.314,0,0.0,0,0,62018794,313573,0,334523,"Compaction was low, possibly due to low write or flush volume.",1
+read,Snappy,ZSTD,1,11.83,0,0.0,0,0,61954404,832663,0,853594,"Compaction was low, possibly due to low write or flush volume.",6
+read,none,ZSTD,2,21.091,1719046,81506.1401,0,0,36232737,121925,0,2114885947,,4
+read,Snappy,Snappy,1,20.867,2914179,139654.9097,0,0,4069768137,200479868,0,201724887,,0
+write,Snappy,Zlib,1,205.98,104748457,508537.0279,194618038,0,85258050781,3183367964,579596782,2630024822,"High stall/flush impact detected, possibly causing total time inflation.",5
+write,Snappy,Zlib,3,251.382,109521071,435675.8678,239780213,0,89333834920,3349457628,582799400,2794161050,"High stall/flush impact detected, possibly causing total time inflation.",5
+write,Snappy,Zlib,2,187.347,95773948,511211.5379,175258057,0,83380148594,3193305391,582735306,2636250077,"High stall/flush impact detected, possibly causing total time inflation.",5
+write,Snappy,ZSTD,3,226.802,56868625,250741.2854,215012528,0,96023403936,3613994699,579075930,3064465116,"High stall/flush impact detected, possibly causing total time inflation.",6
+read,Snappy,Snappy,2,18.913,0,0.0,0,0,62056292,3072628,0,3093595,"Compaction was low, possibly due to low write or flush volume.",0
+read,Snappy,Zlib,1,30.8,0,0.0,0,0,127379361,3469842,0,3510695,"Compaction was low, possibly due to low write or flush volume.",5
+write,none,ZSTD,1,682.836,37821314,55388.5765,641343197,0,18616239425,61045867,11290918829,29104514067,"High stall/flush impact detected, possibly causing total time inflation.",4
+read,LZ4,ZSTD,2,13.21,0,0.0,0,0,62002442,282904,0,303849,"Compaction was low, possibly due to low write or flush volume.",2
+write,none,ZSTD,2,514.429,38428826,74701.9044,499895037,0,18710525490,61398681,11291967997,28894184672,"High stall/flush impact detected, possibly causing total time inflation.",4
+write,LZ4,ZSTD,2,207.475,42868919,206622.0942,194333868,0,93914789437,542418785,97793434,473493367,"High stall/flush impact detected, possibly causing total time inflation.",2
+read,Snappy,Zlib,2,36.895,390020,10571.0801,0,0,170278609,1573250,0,1628218,,5
+write,LZ4,ZSTD,1,302.003,42065179,139287.2885,288145049,0,93981574340,542854950,97813333,473931150,"High stall/flush impact detected, possibly causing total time inflation.",2
+read,Snappy,ZSTD,3,14.997,0,0.0,0,0,62003804,1144052,0,1165000,"Compaction was low, possibly due to low write or flush volume.",6
+read,Snappy,ZSTD,2,15.059,0,0.0,0,0,62069365,607376,0,628342,"Compaction was low, possibly due to low write or flush volume.",6
+write,none,Zlib,2,533.634,68512408,128388.386,513515766,0,15447879794,62210878,11295455460,28462039953,"High stall/flush impact detected, possibly causing total time inflation.",3
+write,LZ4,Zlib,1,267.916,94893223,354190.2051,254118749,0,91415819627,541788390,101475451,468419228,"High stall/flush impact detected, possibly causing total time inflation.",1
+write,Snappy,ZSTD,1,220.586,58465301,265045.3837,203923316,0,97330768319,3615392378,578996990,3066341831,"High stall/flush impact detected, possibly causing total time inflation.",6
+write,Snappy,ZSTD,2,180.184,55151634,306085.0797,168677943,0,93652904112,3612717771,578986449,3062552888,"High stall/flush impact detected, possibly causing total time inflation.",6
+write,LZ4,Zlib,3,201.914,93315979,462157.052,189905540,0,83240077310,486302770,101472308,410441853,"High stall/flush impact detected, possibly causing total time inflation.",1
+read,none,Zlib,1,44.789,4596047,102615.5306,0,0,439648854,1790689,0,3598849925,,3
+read,none,Zlib,2,42.777,5440245,127176.8707,0,0,762866858,3113704,0,3086175371,,3
+read,LZ4,ZSTD,3,12.914,0,0.0,0,0,62035857,235966,0,256919,"Compaction was low, possibly due to low write or flush volume.",2
+read,none,ZSTD,3,20.964,1776471,84739.1242,0,0,47894597,161135,0,2157055764,,4
+read,none,Zlib,3,38.164,17244879,451862.462,0,0,4120062282,15461602,0,1862676064,,3
+read,Snappy,Zlib,3,32.704,0,0.0,0,0,62053024,866706,0,887667,"Compaction was low, possibly due to low write or flush volume.",5
+write,LZ4,ZSTD,3,236.236,41680106,176434.1845,224134820,0,94019919329,543116276,97797195,474219095,"High stall/flush impact detected, possibly causing total time inflation.",2
+write,none,Zlib,1,839.996,82272638,97944.0831,793247971,0,18745938986,74924336,11295733867,28984328526,"High stall/flush impact detected, possibly causing total time inflation.",3
+read,LZ4,Zlib,3,32.779,0,0.0,0,0,62018935,306013,0,326961,"Compaction was low, possibly due to low write or flush volume.",1
+write,none,Zlib,3,541.673,72749537,134305.2672,528735470,0,16586167158,66886807,11294850123,28671006792,"High stall/flush impact detected, possibly causing total time inflation.",3
+read,LZ4,Zlib,1,40.358,0,0.0,0,0,62002479,311718,0,332663,"Compaction was low, possibly due to low write or flush volume.",1
+write,none,ZSTD,3,496.992,38882048,78234.7563,483837057,0,18105639363,59297775,11293697474,28630139347,"High stall/flush impact detected, possibly causing total time inflation.",4
+read,none,ZSTD,1,22.138,1456483,65791.0832,0,0,46695586,157064,0,1645216581,,4
+write,Snappy,Snappy,1,234.981,57082035,242921.9171,222387641,0,93008353750,4584684446,803879736,3809431422,"High stall/flush impact detected, possibly causing total time inflation.",0
+read,Snappy,Snappy,3,18.913,0,0.0,0,0,62056292,3072628,0,3093595,"Compaction was low, possibly due to low write or flush volume.",0
+read,LZ4,ZSTD,1,17.474,0,0.0,0,0,61969355,293214,0,314149,"Compaction was low, possibly due to low write or flush volume.",2
+write,LZ4,Zlib,2,166.549,100721042,604753.2078,147559775,0,90954479582,533678132,101491234,460151752,"High stall/flush impact detected, possibly causing total time inflation.",1
+write,Snappy,Snappy,3,272.591,58275573,213783.9217,259916069,0,93963060474,4631924280,803862648,3856983093,"High stall/flush impact detected, possibly causing total time inflation.",0
+write,Snappy,Snappy,2,224.189,56615086,252532.8451,211523276,0,92477145645,4559902980,804015593,3784357710,"High stall/flush impact detected, possibly causing total time inflation.",0
