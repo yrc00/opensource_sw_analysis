@@ -1,6 +1,4 @@
-<img alt="RocksDB" src="https://img.shields.io/badge/RocksDB-2A2A2A.svg?style=for-the-badge&logo=RocksDB&logoColor=white" height="20"/>
-<img alt="C++" src="https://img.shields.io/badge/C++-00599C.svg?style=for-the-badge&logo=C++&logoColor=white" height="20"/>
-<img alt="Python" src="https://img.shields.io/badge/Python-3776AB.svg?style=for-the-badge&logo=Python&logoColor=white" height="20"/>
+<img alt="RocksDB" src="https://img.shields.io/badge/RocksDB-2A2A2A.svg?style=for-the-badge&logo=RocksDB&logoColor=white" height="20"/> <img alt="C++" src="https://img.shields.io/badge/C++-00599C.svg?style=for-the-badge&logo=C++&logoColor=white" height="20"/> <img alt="Python" src="https://img.shields.io/badge/Python-3776AB.svg?style=for-the-badge&logo=Python&logoColor=white" height="20"/>
 
 </br>
 
