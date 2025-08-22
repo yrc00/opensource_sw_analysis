@@ -13,11 +13,13 @@
 ## 🔎 Lab1
 **가설 1**
 > WAL 설정과 Compaction 전략 간의 상호작용은 WAF에 유의미한 영향을 미칠 수 있다.
+- 유의미한 영향을 준 것으로 확인
 
 </br>
 
 **가설 2**
 > Update 및 Delete가 빈번한 워크로드에서 Leveled Compaction의 Compaction 빈도를 최적화할 경우, Universal compaction과 비슷한 수준의 WAF 성능을 달성할 수 있다. 
+- `max_bytes_for_level_base`, `max_bytes_for_multiplier`가 작을수록 WAF ↓
 
 </br>
 
@@ -25,26 +27,30 @@
 **가설1 추가실험**
 > WAL 설정과 Compaction 전략 간의 상호작용은 WAF에 유의미한 영향을 미칠 수 있다.
 - WAF 측정 시 Direct-IO가 영향을 미칠 가능성이 있어 이와 관련된 추가 실험 진행
+- WAL 설정보다 Direct-IO의 WAF 영향이 더 큼 → Direct-IO의 영향 확인
 
 </br>
 
 **가설 3**
 > Column Family 별로 Hot, Cold Data를 저장하고, Universal Compaction과 Leveld Compaction을 나누어 사용하면 DB 성능이 좋아질 것이다. 
+- Read/Write 성능 균형 향상, 단일 전략 대비 우수
 
 </br>
 
 ## 🔎 Lab3
 **가설 4**
 > Column Family별로 Hot, Cold Data를 저장하고, 각각 다른 압축 알고리즘을 적용하면 DB 성능이 더 좋아질 것이다. 
+- 쓰기엔 ZSTD, 읽기엔 LZ4를 사용하는 조합이 대부분 효과적
 
 </br>
 
 ## 🔎 Lab4
 **가설 5**
-> Time-Aware Tiered Storage (TATS)는 Zipfian Workload에서 데이터 온도 분리에 효과적이며, SST 파일에 레벨 별로 분산될 것이다. 
+> Universal Compaction만 사용한 경우와 비교하여 Time-Aware Tiered Storage (TATS)는 오버헤드가 발생하여 쓰기 성능이 더 낮게 나올 것이다
+- 유의미한 성능 저하 없음
 
 </br>
 
 **가설 6**
-> cold 분류 기준에 따라 Time-Aware Tiered Storage(TATS)의 효과가 달라질 수 있으며, 특히 preserve_internal_time_seconds의 값이 커지면 WAF의 감소로 쓰기 성능이 향상될 것이다. 
-
+> Cold 분류 기준에 따라 Time-Aware Tiered Storage의 효과가 달라질 수 있으며, 특히 preclude_last_level_data_seconds의 값이 커지면 WAF의 감소로 쓰기 성능이 향상될 것이다. 
+- WAF 변화는 미미, 그러나 쓰기 성능은 일부 차이 발생
